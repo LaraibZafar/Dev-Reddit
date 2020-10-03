@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const gravatar = require("gravatar");
+const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 
+const UserModel = require("../../models/User");
+const User = require("../../models/User");
 //@route   POST api/users
 //@desc    Register User
 //@access  Public => you need to be authorized to access this route
@@ -14,13 +18,55 @@ router.post(
       min: 8,
     }),
   ],
-  (req, res) => {
+  //validation
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       //bad request
       return res.status(400).json({ errors: errors.array() });
     }
-    res.send("User Route");
+
+    const { name, email, password } = req.body;
+    //registeration
+    try {
+      //check => user already exists?
+      let user = await User.findOne({ email });
+      if (user) {
+        //sending an array of errors
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exists" }] });
+      }
+
+      const avatar = gravatar.url(email, {
+        s: "200", //size of the avatar
+        r: "pg", //no nudity
+        d: "mm", //if the user doesnt have one just return a default avatar
+      });
+
+      //create a new instance in accordance to the User Model
+      user = new User({
+        name,
+        email,
+        avatar,
+        password,
+      });
+
+      //encrypt the password
+      const salt = await bcrypt.genSalt(10);
+      //salt is the random string that goes in with your password to be hashed
+      //10 = salt round => the amount of rounds of hashes to be run to generate the salt
+      //higher => safer but takes more time
+      user.password = await bcrypt.hash(password, salt);
+
+      //store the user into the database
+      await user.save();
+
+      res.send("User registered");
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Server error");
+    }
   }
 );
 
