@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
+
 const { check, validationResult } = require("express-validator");
 
 const UserModel = require("../../models/User");
-const User = require("../../models/User");
 //@route   POST api/users
 //@desc    Register User
 //@access  Public => you need to be authorized to access this route
@@ -30,7 +32,7 @@ router.post(
     //registeration
     try {
       //check => user already exists?
-      let user = await User.findOne({ email });
+      let user = await UserModel.findOne({ email });
       if (user) {
         //sending an array of errors
         return res
@@ -45,7 +47,7 @@ router.post(
       });
 
       //create a new instance in accordance to the User Model
-      user = new User({
+      user = new UserModel({
         name,
         email,
         avatar,
@@ -62,7 +64,26 @@ router.post(
       //store the user into the database
       await user.save();
 
-      res.send("User registered");
+      //JWT authentication
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: 3600 },
+        (error, token) => {
+          //call back to send a token back to the client
+          if (error) {
+            throw error;
+          } else {
+            console.log("here");
+            res.json({ token });
+          }
+        }
+      );
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server error");
