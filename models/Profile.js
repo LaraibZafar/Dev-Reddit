@@ -6,7 +6,7 @@ const ProfileSchema = new mongoose.Schema({
   },
   handle: {
     type: String,
-    required: true,
+    //required: true,
     max: 40,
   },
   company: {
@@ -29,7 +29,7 @@ const ProfileSchema = new mongoose.Schema({
   bio: {
     type: String,
   },
-  githubusername: {
+  gitHubUsername: {
     type: String,
   },
   experience: [
