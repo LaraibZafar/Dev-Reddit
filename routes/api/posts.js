@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 const auth = require('../../middleware/auth');
 
 const Profile = require("../../models/Profile");
@@ -31,7 +31,39 @@ router.post("/",[auth,[
     }
     catch(error){
         console.error(error.message);
-        res.status(500).send('Server Error : Get Post');
+        res.status(500).send('Server Error : Post Post');
+    }
+});
+
+//@route   GET api/post
+//@desc    Get all posts
+//@access  Private
+router.get('/',auth, async(req,res)=>{
+    try {
+        const posts = await Post.find().sort({date: -1});//ascending
+        res.json(posts);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error : Get all Posts');
+    }
+});
+
+//@route   GET api/post/:post_id
+//@desc    Get a post
+//@access  Private
+router.get('/:post_id',auth, async(req,res)=>{
+    try {
+        const post = await Post.findById(req.params.post_id);
+        if(!post){
+            return res.status(404).json({msg:"Post not found"});
+        }
+        res.json(post);
+    } catch (error) {
+        if(error.kind === 'ObjectId'){ //incase Object ID is not of the proper format
+            return res.status(404).json({msg:"Post not found"});
+        }
+        console.error(error.message);
+        res.status(500).send('Server Error : Get a Post');
     }
 });
 
