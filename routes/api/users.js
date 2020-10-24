@@ -79,14 +79,13 @@ router.post(
           if (error) {
             throw error;
           } else {
-            console.log("here");
             res.json({ token });
           }
         }
       );
     } catch (error) {
       console.error(error.message);
-      res.status(500).send("Server error");
+      res.status(500).send("Server error: Post User");
     }
   }
 );
