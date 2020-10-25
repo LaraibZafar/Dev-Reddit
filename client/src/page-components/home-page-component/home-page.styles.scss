@@ -1,0 +1,27 @@
+.home-page-container {
+  .backgroud-image {
+    height: 91vh;
+    background: url("../../img/Landing-page-image-3.jpeg") no-repeat
+      center/cover;
+    overflow-y: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .dark-overlay {
+      position: absolute;
+      z-index: 1;
+      background-color: black;
+      height: 100%;
+      width: 100%;
+      opacity: 40%;
+    }
+    .center-text {
+      position: absolute;
+      z-index: 2;
+      color: white;
+      text-align: center;
+      font-size: 28px;
+    }
+  }
+}
