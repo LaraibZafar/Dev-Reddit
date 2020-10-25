@@ -1,0 +1,28 @@
+.header-container {
+  background-color: #04505f;
+  color: white;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 2px solid white;
+  .logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 30px;
+    i {
+      font-size: 36px;
+    }
+  }
+  .link-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 30px;
+    p {
+      margin-left: 20px;
+      font-size: 18px;
+    }
+  }
+}

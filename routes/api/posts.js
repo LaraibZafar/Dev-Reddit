@@ -184,7 +184,7 @@ router.post(
 router.delete("/comment/:post_id/:comment_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.post_id);
-    
+
     //get the comment from the post
     const comment = post.comments.find(
       (comment) => comment.id.toString() === req.params.comment_id
