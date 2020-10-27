@@ -1,5 +1,6 @@
 .header-container {
   background-color: #04505f;
+  //background-color: black;
   color: white;
   padding: 15px;
   display: flex;
@@ -11,11 +12,15 @@
     flex-direction: row;
     align-items: center;
     padding-left: 30px;
+
+    cursor: pointer;
     i {
       font-size: 36px;
     }
     &:hover {
-      color: slategrey;
+      //color: slategrey;
+      color: darkgrey;
+      transition: all 0.3s ease-in;
     }
   }
   .link-container {
@@ -23,11 +28,14 @@
     flex-direction: row;
     align-items: center;
     padding-right: 30px;
-    p {
+    color: white;
+    a {
       margin-left: 20px;
       font-size: 18px;
+      cursor: pointer;
       &:hover {
-        color: slategrey;
+        color: darkgrey;
+        transition: all 0.3s ease-in;
       }
     }
   }

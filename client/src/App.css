@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;800&display=swap");
 
 * {
+  font-family: "Montserrat", sans-serif;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
   margin: 0;
 }
 
@@ -8,4 +15,38 @@ h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
   font-style: italic;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+}
+.btn {
+  display: inline-block;
+  padding-top: 12px;
+  width: 120px;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.btn-primary {
+  background-color: white;
+  color: #04505f;
+}
+.btn-primary:hover {
+  background-color: #04505f;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #04505f;
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: white;
+  color: #04505f;
 }

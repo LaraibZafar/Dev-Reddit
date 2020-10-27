@@ -14,14 +14,25 @@
       background-color: black;
       height: 100%;
       width: 100%;
-      opacity: 40%;
+      opacity: 50%;
     }
     .center-text {
       position: absolute;
       z-index: 2;
       color: white;
       text-align: center;
-      font-size: 28px;
+      h1 {
+        font-size: 62px;
+      }
+      i {
+        font-size: 42px;
+      }
+      .button-container {
+        padding-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
     }
   }
 }
