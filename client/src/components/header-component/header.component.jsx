@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 const Header = () => (
   <div className="header-container">
     <Link to="/" className="logo-container">
-      <i class="fas fa-code" />
+      <i className="fas fa-code" />
       <h1>Dev-Reddit</h1>
     </Link>
     <div className="link-container">
