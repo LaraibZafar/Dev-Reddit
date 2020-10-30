@@ -18,13 +18,11 @@
     h1 {
       padding-bottom: 40px;
     }
-    .btn {
-      padding-top: 2px;
-    }
     .forms {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       width: 90%;
       input {
         background-color: #04505f;
@@ -43,6 +41,9 @@
           border-bottom: white solid 1px;
           outline: none;
         }
+      }
+      .btn {
+        padding-top: 2px;
       }
     }
   }

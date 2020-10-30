@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./signup.styles.scss";
 
+import axios from 'axios';
+
 const Signup = () => {
   const [userData, setUserData] = useState({
     name: "",
@@ -13,12 +15,30 @@ const Signup = () => {
   const onChange = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
   };
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       console.log("Password doesn't match.");
     } else {
       console.log(userData);
+      const newUser = {
+        name,
+        email,
+        password
+      }
+      try {
+        const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
+        const body = JSON.stringify(newUser);
+
+        const res = await axios.post('/api/users',body,config);
+        console.log(res.data);
+      } catch (error) {
+        console.error(error.response.data);
+      }
     }
   };
 
