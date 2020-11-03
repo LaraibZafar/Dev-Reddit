@@ -6,7 +6,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .logo-container {
     display: flex;
     flex-direction: row;
@@ -14,8 +18,21 @@
     padding-left: 30px;
     font-style: italic;
     cursor: pointer;
+    @media screen and (max-width: 700px) {
+      padding-left: 0px;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      h1 {
+        font-size: 28px;
+        margin-top: 5px;
+      }
+    }
     i {
       font-size: 36px;
+      @media screen and (max-width: 700px) {
+        font-size: 26px;
+      }
     }
     &:hover {
       //color: slategrey;
@@ -37,6 +54,15 @@
         color: darkgrey;
         transition: all 0.3s ease-in;
       }
+      @media screen and (max-width: 700px) {
+        font-size: 16px;
+        margin-left: 0px;
+      }
+    }
+    @media screen and (max-width: 700px) {
+      padding: 20px 0px 20px 0px;
+      width: 100%;
+      justify-content: space-evenly;
     }
   }
 }

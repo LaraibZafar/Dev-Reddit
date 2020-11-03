@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 import "./signup-page.styles.scss";
 
-import Signup from '../../components/signup-component/signup.component';
+import Particles from "react-particles-js";
+import particleParams from "../../assets/particlesjs-config.json";
 
-const SignupPage=()=> {
-    return (
-       <div className="signup-page-container">
-        <Signup />
-        </div>
-    )
-}
+import Signup from "../../components/signup-component/signup.component";
+
+const SignupPage = () => {
+  return (
+    <div className="signup-page-container">
+      <Particles className="params" params={particleParams} />
+      <Signup />
+    </div>
+  );
+};
 export default SignupPage;
