@@ -1,4 +1,4 @@
-import {alertActionTypes} from './alert.types';
+import alertActionTypes from './alert.types';
 
 const INITIAL_STATE=[];
 

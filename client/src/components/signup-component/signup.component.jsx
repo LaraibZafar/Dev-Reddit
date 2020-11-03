@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import "./signup.styles.scss";
 
+import PropTypes from 'prop-types';
+
+import {connect} from 'react-redux';
+import {setAlert} from '../../redux/alert-reducer/alert.actions'
+
 import axios from 'axios';
 
-const Signup = () => {
+const Signup = ({setAlert}) => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -18,7 +23,7 @@ const Signup = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      console.log("Password doesn't match.");
+      setAlert("Password doesn't match",'danger');
     } else {
       console.log(userData);
       const newUser = {
@@ -82,5 +87,14 @@ const Signup = () => {
     </div>
   );
 };
+//This prop is required and it has to be a function
+//allows type checking in javascript
+Signup.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
 
-export default Signup;
+const mapDispatchToProps=(dispatch)=>({
+  setAlert: (message, alertType)=> dispatch(setAlert(message,alertType))
+});
+
+export default connect(null,mapDispatchToProps)(Signup);
