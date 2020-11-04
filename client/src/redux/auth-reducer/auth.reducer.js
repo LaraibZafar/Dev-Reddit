@@ -25,6 +25,21 @@ const auth = (currentState= INITIAL_STATE,action)=>{
                 isAuthenticated:false,
                 loading:false
             }
+        case authActionTypes.USER_LOADED:
+            return{
+                ...currentState,
+                isAuthenticated:true,
+                loading:false,
+                user:action.payload  //user
+            }
+        case authActionTypes.AUTH_ERROR:
+            localStorage.removeItem('token');
+            return {
+                ...currentState,
+                token:null,
+                isAuthenticated:false,
+                loading:false
+            }
         default:
             return currentState;
     }
