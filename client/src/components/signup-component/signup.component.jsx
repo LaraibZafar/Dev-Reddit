@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./signup.styles.scss";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import {connect} from 'react-redux';
-import {setAlert} from '../../redux/alert-reducer/alert.actions'
+import { connect } from "react-redux";
+import { setAlert } from "../../redux/alert-reducer/alert.actions";
+import { registerUser } from "../../redux/auth-reducer/auth.actions";
 
-import axios from 'axios';
+import axios from "axios";
 
-const Signup = ({setAlert}) => {
+const Signup = ({ setAlert, registerUser }) => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -23,27 +24,9 @@ const Signup = ({setAlert}) => {
   const onSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      setAlert("Password doesn't match",'danger',2000);
+      setAlert("Password doesn't match", "danger", 2000);
     } else {
-      console.log(userData);
-      const newUser = {
-        name,
-        email,
-        password
-      }
-      try {
-        const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        };
-        const body = JSON.stringify(newUser);
-
-        const res = await axios.post('/api/users',body,config);
-        console.log(res.data);
-      } catch (error) {
-        console.error(error.response.data);
-      }
+      registerUser({name,email,password});
     }
   };
 
@@ -80,9 +63,10 @@ const Signup = ({setAlert}) => {
             value={confirmPassword}
             onChange={(event) => onChange(event)}
           />
-          <button type="submit" className="btn btn-primary">Sign Up</button>
+          <button type="submit" className="btn btn-primary">
+            Sign Up
+          </button>
         </form>
-        
       </div>
     </div>
   );
@@ -90,11 +74,15 @@ const Signup = ({setAlert}) => {
 //This prop is required and it has to be a function
 //allows type checking in javascript
 Signup.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps=(dispatch)=>({
-  setAlert: (message, alertType,displayTime)=> dispatch(setAlert(message,alertType,displayTime))
+const mapDispatchToProps = (dispatch) => ({
+  setAlert: (message, alertType, displayTime) =>
+    dispatch(setAlert(message, alertType, displayTime)),
+  registerUser: (name, email, password) =>
+    dispatch(registerUser(name, email, password)),
 });
 
-export default connect(null,mapDispatchToProps)(Signup);
+export default connect(null, mapDispatchToProps)(Signup);
