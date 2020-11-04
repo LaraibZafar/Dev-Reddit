@@ -23,7 +23,7 @@ const Signup = ({setAlert}) => {
   const onSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      setAlert("Password doesn't match",'danger');
+      setAlert("Password doesn't match",'danger',2000);
     } else {
       console.log(userData);
       const newUser = {
@@ -94,7 +94,7 @@ Signup.propTypes = {
 };
 
 const mapDispatchToProps=(dispatch)=>({
-  setAlert: (message, alertType)=> dispatch(setAlert(message,alertType))
+  setAlert: (message, alertType,displayTime)=> dispatch(setAlert(message,alertType,displayTime))
 });
 
 export default connect(null,mapDispatchToProps)(Signup);
