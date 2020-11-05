@@ -79,3 +79,10 @@ export const loginUser = ({email,password})=> async dispatch=>{
         }
     }
 }
+
+//User Logout
+export const logoutUser=()=> dispatch => {
+    dispatch({
+        type: authActionTypes.LOGOUT
+    });
+}

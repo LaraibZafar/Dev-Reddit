@@ -21,12 +21,14 @@ const auth = (currentState= INITIAL_STATE,action)=>{
         case authActionTypes.REGISTER_FAILURE:
         case authActionTypes.AUTH_ERROR:
         case authActionTypes.LOGIN_FAILURE:
+        case authActionTypes.LOGOUT:
             localStorage.removeItem('token');
             return{
                 ...currentState,
                 token:null,
                 isAuthenticated:false,
-                loading:false
+                loading:false,
+                user:null
             }    
         case authActionTypes.USER_LOADED:
             return{
