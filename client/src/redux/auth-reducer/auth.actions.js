@@ -37,9 +37,39 @@ export const registerUser = ({name,email,password})=> async dispatch=>{
             type: authActionTypes.REGISTER_SUCCESS,
             payload: res.data //auth token
         });
+        dispatch(loadUser());
+
     } catch (error) {
         dispatch({
             type: authActionTypes.REGISTER_FAILURE
+        })
+        const errors = error.response.data.errors;
+        if(errors){
+            errors.forEach(error => {
+                dispatch(setAlert(error.msg,'danger',2000))
+            });
+        }
+    }
+}
+
+//User Login
+export const loginUser = ({email,password})=> async dispatch=>{
+    const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    const body = JSON.stringify({email,password});
+    try {
+        const res = await axios.post('/api/auth',body,config);
+        dispatch({
+            type: authActionTypes.LOGIN_SUCCESS,
+            payload: res.data //auth token
+        });
+        dispatch(loadUser());
+    } catch (error) {
+        dispatch({
+            type: authActionTypes.LOGIN_FAILURE
         })
         const errors = error.response.data.errors;
         if(errors){

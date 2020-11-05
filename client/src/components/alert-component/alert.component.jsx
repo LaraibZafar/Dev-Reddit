@@ -1,4 +1,5 @@
 import React from "react";
+import './alert.styles.scss';
 
 import { connect } from "react-redux";
 

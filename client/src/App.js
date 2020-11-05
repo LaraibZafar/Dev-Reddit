@@ -22,7 +22,7 @@ const App = ({loadUser}) => {
       setAuthToken(localStorage.token); //set default token
     }
     loadUser();
-  })
+  },[])
   return (
     <Fragment>
       <Header />

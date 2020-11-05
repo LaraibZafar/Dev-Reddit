@@ -3,13 +3,14 @@ import "./signup.styles.scss";
 
 import PropTypes from "prop-types";
 
+import {Redirect} from 'react-router-dom';
+
+
 import { connect } from "react-redux";
 import { setAlert } from "../../redux/alert-reducer/alert.actions";
 import { registerUser } from "../../redux/auth-reducer/auth.actions";
 
-import axios from "axios";
-
-const Signup = ({ setAlert, registerUser }) => {
+const Signup = ({ setAlert, registerUser,isAuthenticated }) => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -30,6 +31,9 @@ const Signup = ({ setAlert, registerUser }) => {
     }
   };
 
+  if(isAuthenticated){
+    return <Redirect to="/" />
+  }
   return (
     <div className="signup-container  container">
       <div className="signup-fields">
@@ -76,7 +80,13 @@ const Signup = ({ setAlert, registerUser }) => {
 Signup.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+
 };
+
+const mapStateToProps = (state)=>({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setAlert: (message, alertType, displayTime) =>
@@ -85,4 +95,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(registerUser(name, email, password)),
 });
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

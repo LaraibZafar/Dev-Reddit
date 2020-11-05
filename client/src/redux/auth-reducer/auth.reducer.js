@@ -10,6 +10,7 @@ const INITIAL_STATE={
 const auth = (currentState= INITIAL_STATE,action)=>{
     switch(action.type){
         case authActionTypes.REGISTER_SUCCESS:
+        case authActionTypes.LOGIN_SUCCESS:
             localStorage.setItem('token',action.payload.token);
             return{
                 ...currentState,
@@ -18,27 +19,21 @@ const auth = (currentState= INITIAL_STATE,action)=>{
                 loading:false
             }
         case authActionTypes.REGISTER_FAILURE:
+        case authActionTypes.AUTH_ERROR:
+        case authActionTypes.LOGIN_FAILURE:
             localStorage.removeItem('token');
-            return {
+            return{
                 ...currentState,
                 token:null,
                 isAuthenticated:false,
                 loading:false
-            }
+            }    
         case authActionTypes.USER_LOADED:
             return{
                 ...currentState,
                 isAuthenticated:true,
                 loading:false,
                 user:action.payload  //user
-            }
-        case authActionTypes.AUTH_ERROR:
-            localStorage.removeItem('token');
-            return {
-                ...currentState,
-                token:null,
-                isAuthenticated:false,
-                loading:false
             }
         default:
             return currentState;
