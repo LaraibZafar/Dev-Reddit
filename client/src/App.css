@@ -51,3 +51,9 @@ a:hover {
   color: #04505f;
   border: #04505f solid 2px;
 }
+.params {
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+}

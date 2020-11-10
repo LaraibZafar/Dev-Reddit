@@ -25,8 +25,7 @@ const Login = ({loginUser,isAuthenticated}) => {
   };
 
   if(isAuthenticated){
-    return <Redirect to="/" />
-  }
+    return <Redirect to="/dashboard" />  }
 
   return (
     <div className="login-container  container">
