@@ -4,30 +4,27 @@ import "./App.css";
 import Particles from "react-particles-js";
 import particleParams from "./assets/particlesjs-config.json";
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 import { loadUser } from "./redux/auth-reducer/auth.actions";
-import setAuthToken from './utils/setAuthToken';
-
+import setAuthToken from "./utils/setAuthToken";
 
 import Header from "./components/header-component/header.component";
 import Homepage from "./page-components/home-page-component/home-page.component";
 import LoginPage from "./page-components/login-page-component/login-page.component";
 import SignupPage from "./page-components/signup-page-component/signup-page.component";
-import DashboardPage   from "./page-components/dashboard-page-component/dasboard-page.component.jsx";
-import PrivateRoute from './components/private-route-component/private-route.component';
+import DashboardPage from "./page-components/dashboard-page-component/dasboard-page.component.jsx";
+import PrivateRoute from "./components/private-route-component/private-route.component";
 import Alert from "./components/alert-component/alert.component";
 
-
-
-const App = ({loadUser}) => {
-  useEffect(()=>{
+const App = ({ loadUser }) => {
+  useEffect(() => {
     if (localStorage.token) {
       setAuthToken(localStorage.token); //set default token
     }
     loadUser();
-  },[])
+  }, []);
   return (
     <Fragment>
       <Header />
@@ -45,7 +42,8 @@ const App = ({loadUser}) => {
   );
 };
 
-const mapDispatchToProps= (dispatch) =>({
- loadUser: () => dispatch(loadUser())
+const mapDispatchToProps = (dispatch) => ({
+  loadUser: () => dispatch(loadUser()),
 });
-export default connect(null,mapDispatchToProps)(App);
+
+export default connect(null, mapDispatchToProps)(App);

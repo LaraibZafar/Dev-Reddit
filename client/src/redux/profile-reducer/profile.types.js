@@ -1,4 +1,5 @@
-export const profileActionTypes={
-    GET_PROFILE: 'GET_PROFILE',
-    PROFILE_ERROR: 'PROFILE_ERROR'
-}
+export const profileActionTypes = {
+  GET_PROFILE: "GET_PROFILE",
+  CLEAR_PROFILE: "CLEAR_PROFILE",
+  PROFILE_ERROR: "PROFILE_ERROR",
+};

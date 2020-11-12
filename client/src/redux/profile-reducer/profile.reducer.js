@@ -10,20 +10,24 @@ const INITIAL_STATE = {
 const profile = (currentState = INITIAL_STATE, action) => {
   switch (action.type) {
     case profileActionTypes.GET_PROFILE:
-        console.log(action.payload);
       return {
         ...currentState,
         profile: action.payload,
         loading: false,
-        
       };
     case profileActionTypes.PROFILE_ERROR:
       return {
         ...currentState,
         error: action.payload,
-        loading: false,
         profile: null,
-        
+        loading: false,
+      };
+    case profileActionTypes.CLEAR_PROFILE:
+      return {
+        ...currentState,
+        profile: null,
+        loading: true,
+        repos: [],
       };
     default:
       return currentState;

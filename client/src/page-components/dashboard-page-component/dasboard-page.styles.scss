@@ -1,0 +1,22 @@
+.dashboard-container {
+  margin-top: 45px;
+  padding: 20px;
+  height: 75vh;
+  background-color: #04505f;
+  opacity: 90%;
+  color: white;
+  .btn {
+    width: max-content;
+  }
+}
+.dashboard-container-spinner {
+  margin-top: 45px;
+  padding: 20px;
+  height: 75vh;
+  background-color: #04505f;
+  opacity: 90%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
