@@ -6,9 +6,10 @@
   scrollbar-width: none; /* Firefox */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: hidden; /* Hide vertical scrollbar */
-  overflow-x: hidden; /* Hide horizontal scrollbar */
   margin: 0;
+}
+*::-webkit-scrollbar {
+  display: none; /*Safari & chrome*/
 }
 
 h1 {
@@ -32,6 +33,9 @@ a:hover {
   cursor: pointer;
   outline: none;
 }
+.btn:active {
+  background-color: black;
+}
 .btn-primary {
   background-color: white;
   color: #04505f;
@@ -40,6 +44,9 @@ a:hover {
   background-color: #04505f;
   color: white;
   border: white solid 2px;
+}
+.btn-primary:active {
+  background-color: black;
 }
 
 .btn-secondary {
@@ -50,6 +57,9 @@ a:hover {
   background-color: white;
   color: #04505f;
   border: #04505f solid 2px;
+}
+.btn-secondary:active {
+  background-color: black;
 }
 .params {
   position: absolute;
