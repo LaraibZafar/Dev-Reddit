@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./create-profile-page.styles.scss";
 
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
+import { createProfile } from "../../redux/profile-reducer/profile.actions";
 
-const CreateProfilePage = (props) => {
+const CreateProfilePage = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
     website: "",
     location: "",
@@ -39,10 +41,15 @@ const CreateProfilePage = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+    createProfile(formData, history);
+  };
+
   return (
     <div className="create-profile-container">
       <h1>Create Profile</h1>
-      <form class="form">
+      <form class="form" onSubmit={(event) => onSubmit(event)}>
         <div className="form-container">
           <div className="form-group-1">
             <div className="form-group">
@@ -218,6 +225,13 @@ const CreateProfilePage = (props) => {
   );
 };
 
-CreateProfilePage.propTypes = {};
+CreateProfilePage.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+};
 
-export default CreateProfilePage;
+const mapDispatchToProps = (dispatch) => ({
+  createProfile: (formData, history, edit) =>
+    dispatch(createProfile(formData, history, edit)),
+});
+
+export default connect(null, mapDispatchToProps)(withRouter(CreateProfilePage));
