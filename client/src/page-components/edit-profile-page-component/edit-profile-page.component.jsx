@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "./create-profile-page.styles.scss";
-import { useEmptyProfileForm } from "../../Custom-Hook/Profile-Form-Hook";
+import "./edit-profile-page.styles.scss";
+import { useFilledProfileForm } from "../../Custom-Hook/Profile-Form-Hook";
 
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { createProfile } from "../../redux/profile-reducer/profile.actions";
+import {
+  createProfile,
+  getCurrentProfile,
+} from "../../redux/profile-reducer/profile.actions";
 
-const CreateProfilePage = ({ createProfile, history }) => {
-  const [formData, setFormData] = useEmptyProfileForm();
+const EditProfilePage = ({
+  createProfile,
+  history,
+  getCurrentProfile,
+  profile,
+  auth: { isAuthenticated },
+}) => {
+  const [formData, setFormData] = useFilledProfileForm(
+    getCurrentProfile,
+    profile,
+    isAuthenticated
+  );
+
   const [displaySocials, toggleDisplaySocials] = useState(false);
   const {
     website,
@@ -35,7 +49,7 @@ const CreateProfilePage = ({ createProfile, history }) => {
   };
 
   return (
-    <div className="create-profile-container">
+    <div className="edit-profile-container">
       <h1>Create Profile</h1>
       <form className="form" onSubmit={(event) => onSubmit(event)}>
         <div className="form-container">
@@ -47,14 +61,14 @@ const CreateProfilePage = ({ createProfile, history }) => {
                 onChange={(event) => onChange(event)}
               >
                 <option value="0">* Select Professional Status</option>
-                <option value="Developer">Developer</option>
-                <option value="Junior Developer">Junior Developer</option>
-                <option value="Senior Developer">Senior Developer</option>
-                <option value="Manager">Manager</option>
-                <option value="Student">Student</option>
-                <option value="Instructor">Instructor</option>
-                <option value="Intern">Intern</option>
-                <option value="Other">Other</option>
+                <option value="developer">Developer</option>
+                <option value="junior developer">Junior Developer</option>
+                <option value="senior developer">Senior Developer</option>
+                <option value="manager">Manager</option>
+                <option value="student">Student</option>
+                <option value="instructor">Instructor</option>
+                <option value="intern">Intern</option>
+                <option value="other">Other</option>
               </select>
               <small className="form-text">
                 Give us an idea of where you are at in your career
@@ -213,13 +227,22 @@ const CreateProfilePage = ({ createProfile, history }) => {
   );
 };
 
-CreateProfilePage.propTypes = {
+EditProfilePage.propTypes = {
   createProfile: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   createProfile: (formData, history, edit) =>
     dispatch(createProfile(formData, history, edit)),
+  getCurrentProfile: () => dispatch(getCurrentProfile()),
 });
 
-export default connect(null, mapDispatchToProps)(withRouter(CreateProfilePage));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(EditProfilePage));

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../redux/profile-reducer/profile.actions";
+import DashboardOptions from "../../components/dashboard-option-component/dashboard-options.component";
 
 import Spinner from "../../components/spinner-component/spinner.component";
 
@@ -31,7 +32,7 @@ const DashboardPage = ({
         {"   "}Welcome {user && user.name}
       </p>
       {profile !== null ? (
-        <p>Has a profile</p>
+        <DashboardOptions />
       ) : (
         <div>
           <p>You haven't created a profile, please create one.</p>

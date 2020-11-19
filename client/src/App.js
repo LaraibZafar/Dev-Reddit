@@ -16,6 +16,7 @@ import LoginPage from "./page-components/login-page-component/login-page.compone
 import SignupPage from "./page-components/signup-page-component/signup-page.component";
 import DashboardPage from "./page-components/dashboard-page-component/dasboard-page.component.jsx";
 import CreateProfilePage from "./page-components/create-profile-page-component/create-profile-page.component";
+import EditProfilePage from "./page-components/edit-profile-page-component/edit-profile-page.component";
 import PrivateRoute from "./components/private-route-component/private-route.component";
 import Alert from "./components/alert-component/alert.component";
 
@@ -41,6 +42,11 @@ const App = ({ loadUser }) => {
             exact
             path="/create-profile"
             component={CreateProfilePage}
+          />
+          <PrivateRoute
+            exact
+            path="/edit-profile"
+            component={EditProfilePage}
           />
         </Switch>
       </section>

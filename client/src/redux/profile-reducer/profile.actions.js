@@ -9,11 +9,13 @@ export const getCurrentProfile = () => async (dispatch) => {
     const res = await axios.get("/api/profile/myProfile"); //we don't need to pass a token
     //because we pass the token by default
     //because of the auth/setAuthToken
+    console.log(res.data);
     dispatch({
       type: profileActionTypes.GET_PROFILE,
       payload: res.data,
     });
   } catch (error) {
+    console.log("error found", error);
     dispatch({
       type: profileActionTypes.PROFILE_ERROR,
       payload: {
