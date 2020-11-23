@@ -10,6 +10,7 @@ const INITIAL_STATE = {
 const profile = (currentState = INITIAL_STATE, action) => {
   switch (action.type) {
     case profileActionTypes.GET_PROFILE:
+    case profileActionTypes.UPDATE_PROFILE:
       return {
         ...currentState,
         profile: action.payload,

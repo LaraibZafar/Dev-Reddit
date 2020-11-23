@@ -143,7 +143,7 @@ const CreateProfilePage = ({ createProfile, history }) => {
                     <input
                       type="text"
                       placeholder="Linkedin URL"
-                      name="linkedIn"
+                      name="linkedin"
                       value={linkedin}
                       onChange={(event) => onChange(event)}
                     />
@@ -179,7 +179,7 @@ const CreateProfilePage = ({ createProfile, history }) => {
               <input
                 type="text"
                 placeholder="Github Username"
-                name="githubUsername"
+                name="gitHubUsername"
                 value={gitHubUsername}
                 onChange={(event) => onChange(event)}
               />

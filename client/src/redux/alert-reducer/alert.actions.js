@@ -7,8 +7,11 @@ export const setAlert = (message, alertType, displayTime) => (dispatch) => {
     type: alertActionTypes.SET_ALERT,
     payload: { id, message, alertType },
   });
+  if (!displayTime) {
+    displayTime = 3000;
+  }
   setTimeout(
     () => dispatch({ type: alertActionTypes.REMOVE_ALERT, payload: id }),
-    displayTime=3000
+    displayTime
   );
 };

@@ -45,7 +45,7 @@ const EditProfilePage = ({
 
   const onSubmit = (event) => {
     event.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   return (
@@ -61,14 +61,14 @@ const EditProfilePage = ({
                 onChange={(event) => onChange(event)}
               >
                 <option value="0">* Select Professional Status</option>
-                <option value="developer">Developer</option>
-                <option value="junior developer">Junior Developer</option>
-                <option value="senior developer">Senior Developer</option>
-                <option value="manager">Manager</option>
-                <option value="student">Student</option>
-                <option value="instructor">Instructor</option>
-                <option value="intern">Intern</option>
-                <option value="other">Other</option>
+                <option value="Developer">Developer</option>
+                <option value="Junior Developer">Junior Developer</option>
+                <option value="Senior Developer">Senior Developer</option>
+                <option value="Manager">Manager</option>
+                <option value="Student">Student</option>
+                <option value="Instructor">Instructor</option>
+                <option value="Intern">Intern</option>
+                <option value="Other">Other</option>
               </select>
               <small className="form-text">
                 Give us an idea of where you are at in your career
@@ -107,7 +107,7 @@ const EditProfilePage = ({
                 onChange={(event) => onChange(event)}
               />
               <small className="form-text">
-                City & state suggested (eg. Boston, MA)
+                City & state suggested (eg. Karachi, London)
               </small>
             </div>
             <button
@@ -157,7 +157,7 @@ const EditProfilePage = ({
                     <input
                       type="text"
                       placeholder="Linkedin URL"
-                      name="linkedIn"
+                      name="linkedin"
                       value={linkedin}
                       onChange={(event) => onChange(event)}
                     />
@@ -186,7 +186,8 @@ const EditProfilePage = ({
                 onChange={(event) => onChange(event)}
               />
               <small className="form-text">
-                Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
+                Please use comma separated values (eg.
+                HTML,CSS,JavaScript,Python)
               </small>
             </div>
             <div className="form-group">
