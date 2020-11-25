@@ -17,6 +17,7 @@ import SignupPage from "./page-components/signup-page-component/signup-page.comp
 import DashboardPage from "./page-components/dashboard-page-component/dasboard-page.component.jsx";
 import CreateProfilePage from "./page-components/create-profile-page-component/create-profile-page.component";
 import EditProfilePage from "./page-components/edit-profile-page-component/edit-profile-page.component";
+import AddExperience from "./page-components/add-experience-page-component/add-experience-page.component.jsx";
 import PrivateRoute from "./components/private-route-component/private-route.component";
 import Alert from "./components/alert-component/alert.component";
 
@@ -47,6 +48,11 @@ const App = ({ loadUser }) => {
             exact
             path="/edit-profile"
             component={EditProfilePage}
+          />
+          <PrivateRoute
+            exact
+            path="/add-experience"
+            component={AddExperience}
           />
         </Switch>
       </section>
