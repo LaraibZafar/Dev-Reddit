@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 
@@ -207,6 +208,16 @@ router.delete("/comment/:post_id/:comment_id", auth, async (req, res) => {
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error : Delete Comment");
+  }
+});
+
+router.post("/image", async (req, res) => {
+  try {
+    console.log(req.body.result);
+    res.send("Fok");
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error : IDK");
   }
 });
 

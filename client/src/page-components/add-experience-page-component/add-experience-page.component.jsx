@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./add-experience-page.styles.scss";
 const AddExperience = (props) => {
@@ -22,20 +23,30 @@ const AddExperience = (props) => {
             rows="5"
           />
         </div>
-        <div className="form-group-2">
-          <div className="date-form">
-            <h6>From Date</h6>
-            <input type="date" name="from" />
-          </div>
-          <div>
-            <div className="check-box">
-              <p>Current Job </p>
-              <input type="checkbox" name="current" value="" />
+        <div className="second-column">
+          <div className="form-group-2">
+            <div className="date-form">
+              <h6>From Date</h6>
+              <input type="date" name="from" />
+            </div>
+            <div>
+              <div className="check-box">
+                <p>Current Job </p>
+                <input type="checkbox" name="current" value="" />
+              </div>
+            </div>
+            <div className="date-form">
+              <h6>To Date</h6>
+              <input type="date" name="to" />
             </div>
           </div>
-          <div className="date-form">
-            <h6>To Date</h6>
-            <input type="date" name="to" />
+          <div className="action-buttons">
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+            <Link to="/dashboard" className="btn btn-secondary">
+              Go Back
+            </Link>
           </div>
         </div>
       </form>

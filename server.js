@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 connectDB();
 
 //Initializa Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: false, limit: "50mb" }));
 
 //Define Routes
 app.use("/api/users", require("./routes/api/users"));
@@ -15,5 +15,6 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profile", require("./routes/api/profile"));
 
 const PORT = process.env.PORT || 4000;
+//const PORT = 4000;
 app.get("/", (req, res) => res.send("API running"));
 app.listen(PORT, () => console.log(`Server running on Port : ${PORT}`));
